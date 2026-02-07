@@ -60,10 +60,13 @@
                     data-i18n="nav_contact">
                     Contacto
                 </a>
-                <button id="lang-toggle-desktop"
-                    class="navbar-anim-item bg-transparent text-slate-300 hover:text-white font-medium border border-slate-700/50 rounded-lg px-3 py-1 transition-all">
-                    ES/EN
-                </button>
+                <div
+                    class="navbar-anim-item flex items-center bg-slate-800/80 rounded-full p-1 border border-slate-700/50 backdrop-blur-sm ml-4">
+                    <button id="btn-es-desktop"
+                        class="lang-btn px-3 py-1 rounded-full text-xs font-bold transition-all">ES</button>
+                    <button id="btn-en-desktop"
+                        class="lang-btn px-3 py-1 rounded-full text-xs font-bold transition-all">EN</button>
+                </div>
             </div>
             <!-- Mobile Button -->
             <button class="md:hidden text-slate-300 focus:outline-none navbar-anim-item" id="mobile-menu-btn">
@@ -76,10 +79,13 @@
                 <a href="#about" class="text-slate-300 hover:text-white" data-i18n="nav_about">Sobre Mí</a>
                 <a href="#skills" class="text-slate-300 hover:text-white" data-i18n="nav_skills">Habilidades</a>
                 <a href="#projects" class="text-slate-300 hover:text-white" data-i18n="nav_projects">Proyectos</a>
-                <button id="lang-toggle-mobile"
-                    class="text-slate-300 hover:text-white font-medium border border-slate-700/50 rounded-lg px-3 py-1 mt-4 mx-auto w-max transition-all">
-                    ES/EN
-                </button>
+                <div
+                    class="flex items-center justify-center bg-slate-800/80 rounded-full p-1 border border-slate-700/50 backdrop-blur-sm mx-auto w-max mt-4">
+                    <button id="btn-es-mobile"
+                        class="lang-btn px-3 py-1 rounded-full text-xs font-bold transition-all">ES</button>
+                    <button id="btn-en-mobile"
+                        class="lang-btn px-3 py-1 rounded-full text-xs font-bold transition-all">EN</button>
+                </div>
             </div>
         </div>
     </nav>

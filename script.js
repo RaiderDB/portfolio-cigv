@@ -93,7 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
         elements.forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (translations[lang][key]) {
-                // If the translation contains HTML tags (like <br> or <span>), use innerHTML
                 if (translations[lang][key].includes('<') || key === 'btn_details') {
                     el.innerHTML = translations[lang][key];
                 } else {
@@ -102,31 +101,47 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Update Toggle Buttons Text
-        const desktopBtn = document.getElementById('lang-toggle-desktop');
-        const mobileBtn = document.getElementById('lang-toggle-mobile');
+        // Update Toggle Switch Visuals
+        const btns = {
+            es: ['btn-es-desktop', 'btn-es-mobile'],
+            en: ['btn-en-desktop', 'btn-en-mobile']
+        };
 
-        if (desktopBtn) desktopBtn.innerText = lang === 'es' ? 'EN' : 'ES'; // Show the OTHER option
-        if (mobileBtn) mobileBtn.innerText = lang === 'es' ? 'EN' : 'ES';
+        // Reset all to inactive state
+        [...btns.es, ...btns.en].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                btn.classList.remove('bg-primary-600', 'text-white');
+                btn.classList.add('text-slate-400', 'hover:text-white');
+            }
+        });
+
+        // Set active language button styles
+        btns[lang].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                btn.classList.remove('text-slate-400', 'hover:text-white');
+                btn.classList.add('bg-primary-600', 'text-white');
+            }
+        });
+
+        // Make currentLang available globally for modal
+        window.currentLang = currentLang;
     }
 
     // Initialize Language
     updateLanguage(currentLang);
 
-    // Event Listeners for Toggles
-    const toggleLang = () => {
-        const newLang = currentLang === 'es' ? 'en' : 'es';
-        updateLanguage(newLang);
-    };
+    // Event Listeners for Switch Buttons
+    const btnEsDesktop = document.getElementById('btn-es-desktop');
+    const btnEnDesktop = document.getElementById('btn-en-desktop');
+    const btnEsMobile = document.getElementById('btn-es-mobile');
+    const btnEnMobile = document.getElementById('btn-en-mobile');
 
-    const dBtn = document.getElementById('lang-toggle-desktop');
-    const mBtn = document.getElementById('lang-toggle-mobile');
-
-    if (dBtn) dBtn.addEventListener('click', toggleLang);
-    if (mBtn) mBtn.addEventListener('click', toggleLang);
-
-    // Make currentLang available globally for modal
-    window.currentLang = currentLang;
+    if (btnEsDesktop) btnEsDesktop.addEventListener('click', () => updateLanguage('es'));
+    if (btnEnDesktop) btnEnDesktop.addEventListener('click', () => updateLanguage('en'));
+    if (btnEsMobile) btnEsMobile.addEventListener('click', () => updateLanguage('es'));
+    if (btnEnMobile) btnEnMobile.addEventListener('click', () => updateLanguage('en'));
 
     // --- INTRO ANIMATION SEQUENCE (Cinematic Reveal) ---
 
