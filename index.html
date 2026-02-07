@@ -51,6 +51,8 @@
             <div class="hidden md:flex space-x-8 items-center text-sm font-medium text-slate-300">
                 <a href="#about" class="navbar-anim-item hover:text-primary-400 transition-colors"
                     data-i18n="nav_about">Sobre Mí</a>
+                <a href="#education" class="navbar-anim-item hover:text-primary-400 transition-colors"
+                    data-i18n="nav_education">Estudios</a>
                 <a href="#skills" class="navbar-anim-item hover:text-primary-400 transition-colors"
                     data-i18n="nav_skills">Habilidades</a>
                 <a href="#projects" class="navbar-anim-item hover:text-primary-400 transition-colors"
@@ -77,6 +79,7 @@
         <div class="md:hidden hidden glass-panel border-t border-slate-700/50 bg-slate-900" id="mobile-menu">
             <div class="flex flex-col p-6 space-y-4 text-center">
                 <a href="#about" class="text-slate-300 hover:text-white" data-i18n="nav_about">Sobre Mí</a>
+                <a href="#education" class="text-slate-300 hover:text-white" data-i18n="nav_education">Estudios</a>
                 <a href="#skills" class="text-slate-300 hover:text-white" data-i18n="nav_skills">Habilidades</a>
                 <a href="#projects" class="text-slate-300 hover:text-white" data-i18n="nav_projects">Proyectos</a>
                 <div
@@ -164,6 +167,69 @@
                     el trabajo en terreno o administrativo. Busco una oportunidad para desarrollar mi carrera aplicando
                     tecnología para solucionar problemas reales y optimizar la productividad de la empresa.
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-24 relative bg-slate-900 border-t border-slate-800/50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-12 border-l-4 border-indigo-400 pl-4" data-i18n="edu_title">
+                Formación Académica</h2>
+
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- Education Item 1 -->
+                <div
+                    class="education-card relative pl-8 border-l-2 border-indigo-500/30 hover:border-indigo-500 transition-colors">
+                    <div
+                        class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-indigo-500">
+                    </div>
+
+                    <div
+                        class="bg-slate-800/40 p-6 rounded-xl border border-slate-700/50 hover:bg-slate-800/60 transition-all hover:-translate-y-1">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1" data-i18n="edu_degree_1">Ingeniería
+                                    Informática</h3>
+                                <p class="text-indigo-400 font-medium" data-i18n="edu_inst_1">[Nombre de la Institución]
+                                </p>
+                            </div>
+                            <span
+                                class="inline-block mt-2 md:mt-0 px-3 py-1 bg-indigo-500/10 text-indigo-300 text-xs font-bold rounded-full border border-indigo-500/20"
+                                data-i18n="edu_year_1">
+                                [Año Inicio] - [Año Fin]
+                            </span>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="edu_desc_1">
+                            Especialización en desarrollo de software, bases de datos y gestión de proyectos
+                            tecnológicos.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Education Item 2 (Optional/Certificate) -->
+                <div
+                    class="education-card relative pl-8 border-l-2 border-indigo-500/30 hover:border-indigo-500 transition-colors">
+                    <div
+                        class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-indigo-500">
+                    </div>
+
+                    <div
+                        class="bg-slate-800/40 p-6 rounded-xl border border-slate-700/50 hover:bg-slate-800/60 transition-all hover:-translate-y-1">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-white mb-1" data-i18n="edu_degree_2">Diplomado /
+                                    Certificación</h3>
+                                <p class="text-indigo-400 font-medium" data-i18n="edu_inst_2">[Institución]</p>
+                            </div>
+                            <span
+                                class="inline-block mt-2 md:mt-0 px-3 py-1 bg-indigo-500/10 text-indigo-300 text-xs font-bold rounded-full border border-indigo-500/20"
+                                data-i18n="edu_year_2">
+                                [Año]
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
