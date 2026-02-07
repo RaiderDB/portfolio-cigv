@@ -1,12 +1,134 @@
 // Initialize GSAP Animations when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Register GSAP plugins if needed (not strictly needed for core TweenMax functionality used here)
+    // Register GSAP plugins if needed
     // gsap.registerPlugin(ScrollTrigger); 
 
-    // --- INTRO ANIMATION SEQUENCE (Cinematic Reveal) ---
+    // --- TRANSLATION SYSTEM ---
+    const translations = {
+        es: {
+            nav_about: "Sobre Mí",
+            nav_skills: "Habilidades",
+            nav_projects: "Proyectos",
+            nav_contact: "Contacto",
+            hero_role: "Ingeniero Informático <br />Data Analytics & AI",
+            hero_cv: "Curriculum",
+            about_title: "Sobre Mí",
+            about_p1: "Profesional de la Ingeniería Informática con experiencia demostrable en operaciones y logística. Combino competencias técnicas en Software, Bases de Datos y Soporte TI con habilidades de gestión de stock y control de procesos.",
+            about_p2: "Me caracterizo por ser un profesional adaptable, responsable y con excelente disposición para el trabajo en terreno o administrativo. Busco una oportunidad para desarrollar mi carrera aplicando tecnología para solucionar problemas reales y optimizar la productividad de la empresa.",
+            skills_title: "Habilidades Técnicas",
+            skills_bi: "BI & DATOS",
+            skills_ai: "IA & AUTOMATIZACIÓN",
+            skills_web: "DESARROLLO WEB",
+            skills_cloud: "NUBE & HERRAMIENTAS",
+            skills_db: "BASES DE DATOS",
+            skills_ops: "OPERACIONES Y OTROS",
+            projects_title: "Proyectos Destacados",
+            project_athenas_title: "Sistema ETL & Flask App <span class='text-slate-500 text-sm font-normal'>Condensa S.A.</span>",
+            project_athenas_client: "Condensa S.A.", // Not used directly if HTML is replaced, but kept for reference
+            project_athenas_desc: "Una plataforma centralizada para la automatización de procesos de datos (ETL) y visualización operativa. Elimina la fragmentación de información y reduce tiempos de reporte en un 40%.",
+            project_dipreseh_title: "Geo-Seguridad Preventiva <span class='text-slate-500 text-sm font-normal'>Sector Público</span>",
+            project_dipreseh_desc: "Sistema de generación automática de reportes georreferenciados para la Dirección de Prevención. Permite la asignación estratégica de recursos de seguridad basada en mapas de calor delictual.",
+            project_logistics_title: "Optimización de Inventarios <span class='text-slate-500 text-sm font-normal'>Logística</span>",
+            project_logistics_desc: "Modelo analítico para la reducción de mermas y optimización de tiempos de despacho. Uso de diagramas BPMN para reestructurar el flujo operativo de bodegas.",
+            btn_details: "Ver Detalles <ion-icon name='arrow-forward-outline'></ion-icon>",
+            contact_title: "Hablemos",
+            contact_subtitle: "¿Interesado en trabajar juntos?",
+            contact_desc: "Estoy abierto a nuevas oportunidades, proyectos de consultoría o simplemente para charlar sobre tecnología y datos.",
+            contact_location: "Ubicación",
+            contact_loc_val: "Chile / Remoto",
+            form_name: "Nombre Completo",
+            form_email: "Correo Electrónico",
+            form_subject: "Asunto",
+            form_message: "Mensaje",
+            form_submit: "Enviar Mensaje",
+            footer_rights: "Copyright © 2026 Carlos Ignacio Galvez Vilca"
+        },
+        en: {
+            nav_about: "About Me",
+            nav_skills: "Skills",
+            nav_projects: "Projects",
+            nav_contact: "Contact",
+            hero_role: "Computer Engineer <br />Data Analytics & AI",
+            hero_cv: "Resume",
+            about_title: "About Me",
+            about_p1: "Computer Engineering professional with demonstrable experience in operations and logistics. I combine technical skills in Software, Databases, and IT Support with inventory management and process control capabilities.",
+            about_p2: "I characterize myself as an adaptable, responsible professional with excellent disposition for fieldwork or administrative tasks. I seek an opportunity to develop my career by applying technology to solve real problems and optimize company productivity.",
+            skills_title: "Technical Skills",
+            skills_bi: "BI & DATA",
+            skills_ai: "AI & AUTOMATION",
+            skills_web: "WEB DEV",
+            skills_cloud: "CLOUD & TOOLS",
+            skills_db: "DATABASES",
+            skills_ops: "OPERATIONS & OTHERS",
+            projects_title: "Featured Projects",
+            project_athenas_title: "ETL System & Flask App <span class='text-slate-500 text-sm font-normal'>Condensa S.A.</span>",
+            project_athenas_desc: "A centralized platform for data process automation (ETL) and operational visualization. Eliminates information fragmentation and reduces reporting times by 40%.",
+            project_dipreseh_title: "Geo-Preventive Security <span class='text-slate-500 text-sm font-normal'>Public Sector</span>",
+            project_dipreseh_desc: "Automated georeferenced reporting system for the Prevention Directorate. Allows strategic allocation of security resources based on crime heatmaps.",
+            project_logistics_title: "Inventory Optimization <span class='text-slate-500 text-sm font-normal'>Logistics</span>",
+            project_logistics_desc: "Analytical model for shrinkage reduction and dispatch time optimization. Use of BPMN diagrams to restructure warehouse operational flows.",
+            btn_details: "View Details <ion-icon name='arrow-forward-outline'></ion-icon>",
+            contact_title: "Let's Talk",
+            contact_subtitle: "Interested in working together?",
+            contact_desc: "I am open to new opportunities, consulting projects, or just chatting about technology and data.",
+            contact_location: "Location",
+            contact_loc_val: "Chile / Remote",
+            form_name: "Full Name",
+            form_email: "Email Address",
+            form_subject: "Subject",
+            form_message: "Message",
+            form_submit: "Send Message",
+            footer_rights: "Copyright © 2026 Carlos Ignacio Galvez Vilca"
+        }
+    };
 
-    // 1. Initial State Setups were handled by CSS/HTML structure (opacity: 0 or off-screen)
+    let currentLang = localStorage.getItem('site_lang') || 'es';
+
+    function updateLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('site_lang', lang);
+
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                // If the translation contains HTML tags (like <br> or <span>), use innerHTML
+                if (translations[lang][key].includes('<') || key === 'btn_details') {
+                    el.innerHTML = translations[lang][key];
+                } else {
+                    el.innerText = translations[lang][key];
+                }
+            }
+        });
+
+        // Update Toggle Buttons Text
+        const desktopBtn = document.getElementById('lang-toggle-desktop');
+        const mobileBtn = document.getElementById('lang-toggle-mobile');
+
+        if (desktopBtn) desktopBtn.innerText = lang === 'es' ? 'EN' : 'ES'; // Show the OTHER option
+        if (mobileBtn) mobileBtn.innerText = lang === 'es' ? 'EN' : 'ES';
+    }
+
+    // Initialize Language
+    updateLanguage(currentLang);
+
+    // Event Listeners for Toggles
+    const toggleLang = () => {
+        const newLang = currentLang === 'es' ? 'en' : 'es';
+        updateLanguage(newLang);
+    };
+
+    const dBtn = document.getElementById('lang-toggle-desktop');
+    const mBtn = document.getElementById('lang-toggle-mobile');
+
+    if (dBtn) dBtn.addEventListener('click', toggleLang);
+    if (mBtn) mBtn.addEventListener('click', toggleLang);
+
+    // Make currentLang available globally for modal
+    window.currentLang = currentLang;
+
+    // --- INTRO ANIMATION SEQUENCE (Cinematic Reveal) ---
 
     // 2. Navbar Reveal
     gsap.from(".navbar-anim-item", {
@@ -26,10 +148,10 @@ document.addEventListener("DOMContentLoaded", () => {
         opacity: 0,
         x: -20,
         ease: "expo.inOut",
+        stagger: 0.1
     });
 
-    // 4. Main Title Reveal (Sliding up from hidden overflow)
-    // CSS sets translateY(100%), so we animate TO 0%
+    // 4. Main Title Reveal
     gsap.to(".hero-title .hide--text", {
         duration: 1.5,
         delay: 1,
@@ -47,11 +169,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // 6. Background Large Text Fade/Slide In
-    gsap.from(".hero-subtitle", { // The 'DATA' text
+    gsap.from(".hero-subtitle", {
         duration: 1.5,
         delay: 1.5,
         opacity: 0,
-        x: -100, // Slightly less aggressive than -10000 for mobile safety
+        x: -100,
         ease: "expo.inOut",
     });
 
@@ -64,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "expo.inOut",
     });
 
-    // 8. Overlay Curtain Animation (Yellow/Blue blocks sliding up)
+    // 8. Overlay Curtain Animation
     gsap.to(".first", {
         duration: 1.5,
         delay: 0.5,
@@ -135,12 +257,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// --- PROJECT MODAL LOGIC ---
+// --- PROJECT MODAL LOGIC & DATA ---
 
 const projectData = {
     "athenas": {
-        title: "ATHENAS - Sistema Integral de Gestión de Producción",
-        content: `
+        es: {
+            title: "ATHENAS - Sistema Integral de Gestión de Producción",
+            content: `
             <div class="grid lg:grid-cols-12 gap-8">
                 <!-- LEFT COLUMN: INFO (40% width) -->
                 <div class="space-y-8 order-2 lg:order-1 lg:col-span-5">
@@ -197,18 +320,6 @@ const projectData = {
                             </p>
                         </div>
                     </div>
-                    
-                     <!-- Competencies -->
-                     <div>
-                        <h4 class="text-slate-400 font-bold text-lg mb-3">Competencias</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">Backend modular</span>
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">SQL Server</span>
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">AI/ML</span>
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">IoT</span>
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">DevOps</span>
-                        </div>
-                     </div>
                 </div>
 
                 <!-- RIGHT COLUMN: VIDEO & STACK (60% width) -->
@@ -221,7 +332,7 @@ const projectData = {
                                 Tu navegador no soporta la reproducción de video.
                             </video>
                              <div class="absolute bottom-2 right-2 bg-black/60 px-2 py-1 rounded text-xs text-white/70 pointer-events-none">
-                                Demo Preview
+                                Vista Previa
                             </div>
                         </div>
                         
@@ -272,15 +383,132 @@ const projectData = {
                     </div>
                 </div>
             </div>
-        `
+            `
+        },
+        en: {
+            title: "ATHENAS - Integrated Production Management System",
+            content: `
+            <div class="grid lg:grid-cols-12 gap-8">
+                <div class="space-y-8 order-2 lg:order-1 lg:col-span-5">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                        <h4 class="text-white font-bold text-lg mb-2 flex items-center gap-2">
+                            <ion-icon name="stats-chart-outline" class="text-primary-400"></ion-icon>
+                            Executive Summary
+                        </h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Web platform developed in Flask integrating real-time production monitoring, 
+                            data analysis, Augmented Reality, and AI to optimize manufacturing processes. 
+                            The system connects IoT devices, SQL Server databases, and provides advanced analytics with NL2SQL.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">🎯 Main Modules</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">1. Production Dashboard</strong>
+                                Shift monitoring, real-time indicators (Hourly production, scrap), and automated status control.
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">2. Statistics Module</strong>
+                                KPI visualization with time selectors and interactive charts (Chart.js) for production and scrap.
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg border border-primary-500/20">
+                                <strong class="text-primary-300 block mb-1 flex items-center gap-2">
+                                    <ion-icon name="sparkles-outline"></ion-icon> 3. Augmented Analytics (AI)
+                                </strong>
+                                NL2SQL engine with GPT-4o-mini converting natural language questions into safe SQL queries.
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">4. IoT Module</strong>
+                                Integration with LM35 sensors via Arduino/ESP32 for real-time telemetry.
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">5. Augmented Reality</strong>
+                                Interactive 3D visualization of production lines.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-green-400 font-bold text-xl mb-4 flex items-center gap-2">
+                            <ion-icon name="trending-up-outline"></ion-icon> Impact
+                        </h4>
+                        <div class="bg-green-900/10 border border-green-500/20 p-4 rounded-xl">
+                            <p class="italic text-green-100/80 text-sm">
+                                "The system optimizes production visibility, reduces decision-making times through conversational AI, and automates line monitoring."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8 order-1 lg:order-2 lg:col-span-7">
+                    <div class="sticky top-0 z-10">
+                        <div class="rounded-xl overflow-hidden shadow-2xl border border-slate-700 bg-black relative group w-full">
+                            <video autoplay muted loop playsinline class="w-full h-auto object-cover" preload="metadata">
+                                <source src="static/video/condensa_demo.mp4" type="video/mp4">
+                                Your browser does not support video playback.
+                            </video>
+                             <div class="absolute bottom-2 right-2 bg-black/60 px-2 py-1 rounded text-xs text-white/70 pointer-events-none">
+                                Demo Preview
+                            </div>
+                        </div>
+                        
+                         <div class="mt-6">
+                            <h4 class="text-secondary-400 font-bold text-xl mb-4 flex items-center gap-2">
+                                <ion-icon name="code-slash-outline"></ion-icon> Tech Stack
+                            </h4>
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 text-sm bg-slate-800/30 p-4 rounded-xl border border-slate-700/50">
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Backend</span>
+                                    <span class="text-white font-medium text-xs">Flask 3.0, PyODBC</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Database</span>
+                                    <span class="text-white font-medium text-xs">SQL Server, SPs, Views</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">ORM</span>
+                                    <span class="text-white font-medium text-xs">SQLAlchemy</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">AI Core</span>
+                                    <span class="text-white font-medium text-xs">OpenAI GPT-4o-mini</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">AI Framework</span>
+                                    <span class="text-white font-medium text-xs">LangChain</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Hardware IoT</span>
+                                    <span class="text-white font-medium text-xs">ESP32, Arduino Uno</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">IoT Protocol</span>
+                                    <span class="text-white font-medium text-xs">Serial Communication</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Frontend</span>
+                                    <span class="text-white font-medium text-xs">HTML5, CSS3, JS</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Visualization</span>
+                                    <span class="text-white font-medium text-xs">Chart.js</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+        }
     },
     "dipreseh": {
-        title: "Sistema Integrado de Gestión Operativa (DIPRESEH)",
-        content: `
+        es: {
+            title: "Sistema Integrado de Gestión Operativa (DIPRESEH)",
+            content: `
             <div class="grid lg:grid-cols-12 gap-8">
-                <!-- LEFT COLUMN: INFO (40% width) -->
                 <div class="space-y-8 order-2 lg:order-1 lg:col-span-5">
-                    <!-- Executive Summary -->
                     <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
                         <h4 class="text-white font-bold text-lg mb-2 flex items-center gap-2">
                             <ion-icon name="map-outline" class="text-primary-400"></ion-icon>
@@ -291,10 +519,8 @@ const projectData = {
                             Integra flujos de datos de múltiples unidades (UDIEM, Patrullaje, Seguridad Comunitaria) transformando reportes de campo en inteligencia accionable para la toma de decisiones en tiempo real.
                         </p>
                     </div>
-
-                    <!-- Modules -->
                     <div>
-                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">🗺️ Core Feature: Inteligencia Espacial</h4>
+                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">🗺️ Funcionalidad Clave: Inteligencia Espacial</h4>
                         <ul class="space-y-3 text-sm">
                             <li class="bg-slate-900/30 p-3 rounded-lg">
                                 <strong class="text-white block mb-1">1. Mapas de Calor Combinados</strong>
@@ -316,8 +542,6 @@ const projectData = {
                             </li>
                         </ul>
                     </div>
-
-                    <!-- Impact -->
                     <div>
                         <h4 class="text-green-400 font-bold text-xl mb-4 flex items-center gap-2">
                             <ion-icon name="trending-up-outline"></ion-icon> Impacto
@@ -328,35 +552,18 @@ const projectData = {
                             </p>
                         </div>
                     </div>
-                    
-                     <!-- Competencies -->
-                     <div>
-                        <h4 class="text-slate-400 font-bold text-lg mb-3">Competencias</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">GIS & Mapping</span>
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">Data Engineering</span>
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">Python Optimization</span>
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">API Integration</span>
-                        </div>
-                     </div>
                 </div>
-
-                <!-- RIGHT COLUMN: VISUAL & STACK (60% width) -->
                 <div class="space-y-8 order-1 lg:order-2 lg:col-span-7">
-                     <!-- Visual Representation -->
                     <div class="sticky top-0 z-10">
                         <div class="rounded-xl overflow-hidden shadow-2xl border border-slate-700 bg-slate-900 relative group w-full h-64 lg:h-80">
-                            <!-- Using the card image since no specific video was provided -->
                             <video autoplay muted loop playsinline class="w-full h-full object-cover" preload="metadata">
                                 <source src="static/video/dipreseh_demo.mp4" type="video/mp4">
                                 Tu navegador no soporta la reproducción de video.
                             </video>
                              <div class="absolute bottom-2 right-2 bg-black/60 px-2 py-1 rounded text-xs text-white/70 pointer-events-none">
-                                Demo Preview
+                                Vista Previa
                             </div>
                         </div>
-                        
-                        <!-- Mini Stack Summary below visual -->
                          <div class="mt-6">
                             <h4 class="text-secondary-400 font-bold text-xl mb-4 flex items-center gap-2">
                                 <ion-icon name="code-slash-outline"></ion-icon> Stack Tecnológico
@@ -391,11 +598,109 @@ const projectData = {
                     </div>
                 </div>
             </div>
-        `
+            `
+        },
+        en: {
+            title: "Integrated Operations Management System (DIPRESEH)",
+            content: `
+            <div class="grid lg:grid-cols-12 gap-8">
+                <div class="space-y-8 order-2 lg:order-1 lg:col-span-5">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                        <h4 class="text-white font-bold text-lg mb-2 flex items-center gap-2">
+                            <ion-icon name="map-outline" class="text-primary-400"></ion-icon>
+                            Executive Summary
+                        </h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Advanced web platform for centralization, auditing, and strategic visualization of security operations. 
+                            Integrates data flows from multiple units (UDIEM, Patrol, Community Security) transforming field reports into actionable intelligence for real-time decision making.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">🗺️ Core Feature: Spatial Intelligence</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">1. Combined Heatmaps</strong>
+                                Density visualization with Leaflet.js, overlaying data layers from different units to detect "hot zones".
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">2. Coordinate Normalization</strong>
+                                Python algorithms for cleaning and validation of coordinates (Lat/Lon) ensuring plotting accuracy.
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg border border-primary-500/20">
+                                <strong class="text-primary-300 block mb-1 flex items-center gap-2">
+                                    <ion-icon name="options-outline"></ion-icon> 3. Dynamic Controls
+                                </strong>
+                                Real-time adjustment of radius, intensity, and blur to granularize analysis (micro vs macro sectors).
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">4. Spatio-Temporal Analysis</strong>
+                                Filters to "rewind" or isolate activity by time ranges, visualizing criminal movements.
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-green-400 font-bold text-xl mb-4 flex items-center gap-2">
+                            <ion-icon name="trending-up-outline"></ion-icon> Impact
+                        </h4>
+                        <div class="bg-green-900/10 border border-green-500/20 p-4 rounded-xl">
+                            <p class="italic text-green-100/80 text-sm">
+                                "Modernization of operational management: from paper reports to a Digital Command Center to validat coverage and optimize resources based on real geographical demand."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-8 order-1 lg:order-2 lg:col-span-7">
+                    <div class="sticky top-0 z-10">
+                        <div class="rounded-xl overflow-hidden shadow-2xl border border-slate-700 bg-slate-900 relative group w-full h-64 lg:h-80">
+                            <video autoplay muted loop playsinline class="w-full h-full object-cover" preload="metadata">
+                                <source src="static/video/dipreseh_demo.mp4" type="video/mp4">
+                                Your browser does not support video playback.
+                            </video>
+                             <div class="absolute bottom-2 right-2 bg-black/60 px-2 py-1 rounded text-xs text-white/70 pointer-events-none">
+                                Demo Preview
+                            </div>
+                        </div>
+                         <div class="mt-6">
+                            <h4 class="text-secondary-400 font-bold text-xl mb-4 flex items-center gap-2">
+                                <ion-icon name="code-slash-outline"></ion-icon> Tech Stack
+                            </h4>
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 text-sm bg-slate-800/30 p-4 rounded-xl border border-slate-700/50">
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Backend Core</span>
+                                    <span class="text-white font-medium text-xs">Python, Flask</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Data Processing</span>
+                                    <span class="text-white font-medium text-xs">Pandas, NumPy</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Data Source</span>
+                                    <span class="text-white font-medium text-xs">Google Sheets API</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Mapping Lib</span>
+                                    <span class="text-white font-medium text-xs">Leaflet.js, Leaflet.heat</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Optimization</span>
+                                    <span class="text-white font-medium text-xs">TTL Cache, ThreadPool</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Frontend</span>
+                                    <span class="text-white font-medium text-xs">HTML5, Tailwind, JS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+        }
     },
     "logistics": {
-        title: "Optimización de Inventarios & Reingeniería de Procesos",
-        content: `
+        es: {
+            title: "Optimización de Inventarios & Reingeniería de Procesos",
+            content: `
             <div class="grid lg:grid-cols-12 gap-8">
                 <!-- LEFT COLUMN: INFO (40% width) -->
                 <div class="space-y-8 order-2 lg:order-1 lg:col-span-5">
@@ -443,17 +748,6 @@ const projectData = {
                             </p>
                         </div>
                     </div>
-                    
-                     <!-- Competencies -->
-                     <div>
-                        <h4 class="text-slate-400 font-bold text-lg mb-3">Competencias</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">Process Mining</span>
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">BPMN 2.0</span>
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">Data Analytics</span>
-                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">Logistics</span>
-                        </div>
-                     </div>
                 </div>
 
                 <!-- RIGHT COLUMN: VISUAL & STACK (60% width) -->
@@ -466,7 +760,6 @@ const projectData = {
                                  class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
                         </div>
                         
-                        <!-- Mini Stack Summary below visual -->
                          <div class="mt-6">
                             <h4 class="text-secondary-400 font-bold text-xl mb-4 flex items-center gap-2">
                                 <ion-icon name="code-slash-outline"></ion-icon> Stack Tecnológico
@@ -493,7 +786,92 @@ const projectData = {
                     </div>
                 </div>
             </div>
-        `
+            `
+        },
+        en: {
+            title: "Inventory Optimization & Process Reengineering",
+            content: `
+            <div class="grid lg:grid-cols-12 gap-8">
+                <div class="space-y-8 order-2 lg:order-1 lg:col-span-5">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                        <h4 class="text-white font-bold text-lg mb-2 flex items-center gap-2">
+                            <ion-icon name="cube-outline" class="text-primary-400"></ion-icon>
+                            Executive Summary
+                        </h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Comprehensive consulting and technological development project focused on shrinkage reduction and dispatch time optimization in distribution centers.
+                            Operational restructuring was implemented based on BPMN modeling and analytical stock control tools.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">📦 Intervention Areas</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">1. Process Modeling (BPMN)</strong>
+                                Mapping and redesign of operational flows (AS-IS / TO-BE), identifying bottlenecks in receiving and dispatching.
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">2. Shrinkage Control</strong>
+                                Audit strategies and early warning systems for physical vs. logical inventory deviations.
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg border border-primary-500/20">
+                                <strong class="text-primary-300 block mb-1 flex items-center gap-2">
+                                    <ion-icon name="analytics-outline"></ion-icon> 3. Operational Dashboard
+                                </strong>
+                                Implementation of Power BI panels for KPI tracking: Stock Rotation, Stockout Rate, and Inventory Accuracy.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-green-400 font-bold text-xl mb-4 flex items-center gap-2">
+                            <ion-icon name="trending-up-outline"></ion-icon> Impact
+                        </h4>
+                        <div class="bg-green-900/10 border border-green-500/20 p-4 rounded-xl">
+                            <p class="italic text-green-100/80 text-sm">
+                                "Process reengineering allowed a significant reduction in order preparation times and a substantial improvement in product traceability."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8 order-1 lg:order-2 lg:col-span-7">
+                    <div class="sticky top-0 z-10">
+                        <div class="rounded-xl overflow-hidden shadow-2xl border border-slate-700 bg-slate-900 relative group w-full h-auto">
+                            <img src="static/img/WhatsApp Image 2026-02-07 at 2.23.31 AM.jpeg" 
+                                 alt="Logistics Dashboard" 
+                                 class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        
+                         <div class="mt-6">
+                            <h4 class="text-secondary-400 font-bold text-xl mb-4 flex items-center gap-2">
+                                <ion-icon name="code-slash-outline"></ion-icon> Tech Stack
+                            </h4>
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 text-sm bg-slate-800/30 p-4 rounded-xl border border-slate-700/50">
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Modeling</span>
+                                    <span class="text-white font-medium text-xs">Bizagi / Visio</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Visualization</span>
+                                    <span class="text-white font-medium text-xs">Power BI</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Data Processing</span>
+                                    <span class="text-white font-medium text-xs">Excel / SQL</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Methodology</span>
+                                    <span class="text-white font-medium text-xs">Lean Logistics</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+        }
     }
 };
 
@@ -506,9 +884,12 @@ function openModal(projectId, event) {
 
     if (!modal || !projectData[projectId]) return;
 
-    // Set Content
-    title.innerText = projectData[projectId].title;
-    body.innerHTML = projectData[projectId].content;
+    // Use globally available currentLang or default to 'es'
+    const lang = window.currentLang || 'es';
+
+    // Set Content based on Language
+    title.innerHTML = projectData[projectId][lang].title;
+    body.innerHTML = projectData[projectId][lang].content;
 
     // Show Modal (visibility)
     modal.classList.remove('hidden');
@@ -533,10 +914,7 @@ function openModal(projectId, event) {
         startX = cardCenterX - screenCenterX;
         startY = cardCenterY - screenCenterY;
 
-        // Optional: calculate scale based on width ratio, though fixed 0.1-0.2 is usually smoother
-        // startScale = rect.width / panel.offsetWidth; 
         startScale = 0.2;
-
     }
 
     // Reset standard classes
@@ -559,7 +937,7 @@ function openModal(projectId, event) {
             opacity: 1,
             duration: 0.6,
             ease: "expo.out",
-            clearProps: "all" // Clear inline styles after animation to rely on CSS
+            clearProps: "all"
         }
     );
 
