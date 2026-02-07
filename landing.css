@@ -1,0 +1,957 @@
+/* Fonts */
+/* ... (existing fonts) ... */
+
+/* =========================================
+   PRISM 3D EFFECT STYLES
+   ========================================= */
+
+#prism-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* Ensure it fills the container */
+    border-radius: 12px;
+    /* Optional: match visual style */
+}
+
+/* Adjust distortion container to house the canvas properly */
+.distortion-container {
+    /* Existing styles are fine, but ensure no conflicting backgrounds */
+    background: transparent;
+    display: block;
+    /* Ensure block for canvas */
+}
+
+/* Override filter for canvas if needed, but the css on distortion-container applies to img usually?
+   Let's check line 208: ".distortion-container img". Good, it targets img only.
+*/
+
+.prism-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    color: white;
+    pointer-events: none;
+    width: 100%;
+}
+
+.prism-title {
+    font-family: 'Inter', sans-serif;
+    /* Changing size to fit the portfolio layout */
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.06em;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 40px rgba(138, 43, 226, 0.3));
+    animation: glowPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+    from {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 40px rgba(138, 43, 226, 0.3));
+    }
+
+    to {
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 60px rgba(0, 191, 255, 0.4));
+    }
+}
+
+.prism-tagline {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.7rem, 1.5vw, 1rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5), 0 0 30px rgba(138, 43, 226, 0.3);
+}
+
+.prism-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    pointer-events: auto;
+}
+
+.glass-button {
+    position: relative;
+    padding: 10px 24px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1.5px solid transparent;
+    border-radius: 40px;
+    backdrop-filter: blur(30px);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.glass-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 40px;
+    padding: 1.5px;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.4) 0%,
+            rgba(138, 43, 226, 0.4) 25%,
+            rgba(0, 191, 255, 0.4) 50%,
+            rgba(255, 105, 180, 0.4) 75%,
+            rgba(255, 255, 255, 0.4) 100%);
+    background-size: 200% 200%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: borderFlow 3s linear infinite;
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+}
+
+@keyframes borderFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+.glass-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 40px;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%),
+            rgba(255, 255, 255, 0.2) 0%,
+            transparent 50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.glass-button:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    box-shadow:
+        0 12px 48px rgba(138, 43, 226, 0.3),
+        0 0 80px rgba(0, 191, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px) scale(1.02);
+}
+
+.glass-button:hover::before {
+    opacity: 1;
+    animation-duration: 2s;
+}
+
+.glass-button:hover::after {
+    opacity: 1;
+}
+
+.glass-button:active {
+    transform: translateY(-1px) scale(0.98);
+    box-shadow:
+        0 6px 24px rgba(138, 43, 226, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.glass-button .shimmer {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 45%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0.1) 55%,
+            transparent 100%);
+    transform: rotate(30deg);
+    animation: shimmer 3s infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) rotate(30deg);
+    }
+
+    100% {
+        transform: translateX(100%) rotate(30deg);
+    }
+}
+
+.glass-button:hover .shimmer {
+    animation-duration: 1.5s;
+}
+
+.glass-button span {
+    position: relative;
+    z-index: 1;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Popins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+/* Added for gradient bg compatibility */
+
+/* Global Overrides */
+:root {
+    --color-bg1: rgb(8, 10, 15);
+    --color-bg2: rgb(0, 17, 32);
+    --color1: 18, 113, 255;
+    --color2: 107, 74, 255;
+    --color3: 100, 100, 255;
+    --color4: 50, 160, 220;
+    --color5: 80, 47, 122;
+    --color-interactive: 140, 100, 255;
+    --circle-size: 80%;
+    --blending: hard-light;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Custom Utilities */
+.glass-panel {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================
+   GSAP HERO SECTION STYLES
+   ========================================= */
+
+/* Overlays for Intro Animation */
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    will-change: top;
+
+    /* GLASS EFFECT for Intro - Ultra Glass */
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Using the project's Sky-400 color with HIGH transparency */
+.overlay.first {
+    background: rgba(56, 189, 248, 0.15);
+}
+
+.overlay.second {
+    background: rgba(56, 189, 248, 0.15);
+    left: 33.33%;
+}
+
+.overlay.third {
+    background: rgba(56, 189, 248, 0.15);
+    left: 66.66%;
+    border-right: none;
+    /* Last one doesn't need right border */
+}
+
+/* Hero Container */
+.hero-wrapper {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: #0F172A;
+    /* Fallback */
+}
+
+/* Hero Content Positioning - HORIZONTAL */
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: auto;
+    max-width: 90vw;
+    pointer-events: none;
+    /* Let clicks pass through to interactive bg if needed, though usually text selects */
+}
+
+.hero-text * {
+    pointer-events: auto;
+}
+
+/* Responive adjustments */
+@media (min-width: 768px) {
+    .hero-text {
+        left: 10%;
+    }
+}
+
+/* Hero Typography */
+.hero-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
+    /* Smaller mobile base size */
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #F8FAFC;
+    /* Slate 50 */
+    line-height: 1.0;
+    position: relative;
+    overflow: hidden;
+    /* Essential for the reveal effect */
+    white-space: nowrap;
+    /* FORCE SINGLE LINE */
+    margin-bottom: 5px;
+}
+
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 70px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-title {
+        font-size: 90px;
+    }
+}
+
+/* Background Watermark Text */
+.hero-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 60px;
+    text-transform: uppercase;
+    font-weight: 900;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    color: #0EA5E9;
+    /* Sky 500 */
+    opacity: 0.3;
+    z-index: -1;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .hero-subtitle {
+        font-size: 150px;
+        top: -60px;
+        left: -40px;
+    }
+}
+
+.hero-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #E2E8F0;
+    /* Slate 200 to stand out more */
+    margin-top: 20px;
+    overflow: hidden;
+    /* Essential for reveal */
+}
+
+@media (min-width: 768px) {
+    .hero-desc {
+        font-size: 24px;
+        margin-top: 30px;
+    }
+}
+
+/* Helper for text reveal */
+.hide--text {
+    display: block;
+    transform: translateY(100%);
+    /* Initial state handled by GSAP, but fallback here */
+}
+
+/* Distortion/Image Container */
+.distortion-container {
+    position: absolute;
+    right: 0;
+    top: 10%;
+    height: 80%;
+    width: 50%;
+    z-index: 5;
+    /* Adjusted z-index to sit above background but maybe below overlay/nav */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 1;
+}
+
+.distortion-container img {
+    max-height: 80%;
+    max-width: 100%;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(0.8) sepia(100%) hue-rotate(170deg) saturate(200%);
+    /* Blue tint to match theme */
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .distortion-container {
+        width: 100%;
+        top: 20%;
+        opacity: 0.2;
+        /* Faint background on mobile */
+    }
+}
+
+/* Sidebar Social Media */
+.hero-media ul {
+    position: absolute;
+    bottom: 50px;
+    left: 40px;
+    display: flex;
+    flex-direction: column;
+    /* Vertical stack */
+    gap: 20px;
+    z-index: 20;
+}
+
+@media (min-width: 768px) {
+    .hero-media ul {
+        flex-direction: row;
+        /* Horizontal row */
+        bottom: 60px;
+        left: 10%;
+    }
+}
+
+.hero-media li {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #64748B;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.hero-media li:hover {
+    color: #38BDF8;
+}
+
+/* Navbar Animation Item Initial State */
+.navbar-anim-item {
+    opacity: 1;
+    /* Fallback */
+}
+
+/* =========================================
+   INTERACTIVE GRADIENT BACKGROUND
+   ========================================= */
+
+@keyframes moveInCircle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes moveVertical {
+    0% {
+        transform: translateY(-50%);
+    }
+
+    50% {
+        transform: translateY(50%);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes moveHorizontal {
+    0% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+
+    50% {
+        transform: translateX(50%) translateY(10%);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-10%);
+    }
+}
+
+.gradient-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /* Changed from relative to absolute to fill hero */
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+    z-index: 0;
+    /* Behind everything in hero */
+}
+
+.gradient-bg .svgBlur {
+    display: none;
+}
+
+.gradient-bg .noiseBg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    /* Noise on top of gradients */
+    mix-blend-mode: soft-light;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.gradients-container {
+    filter: url(#goo) blur(40px);
+    width: 100%;
+    height: 100%;
+}
+
+.g1 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: center center;
+    animation: moveVertical 30s ease infinite;
+    opacity: 1;
+}
+
+.g2 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: calc(50% - 400px);
+    animation: moveInCircle 20s reverse infinite;
+    opacity: 1;
+}
+
+.g3 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2 + 200px);
+    left: calc(50% - var(--circle-size) / 2 - 500px);
+    transform-origin: calc(50% + 400px);
+    animation: moveInCircle 40s linear infinite;
+    opacity: 1;
+}
+
+.g4 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: calc(50% - 200px);
+    animation: moveHorizontal 40s ease infinite;
+    opacity: 0.7;
+}
+
+.g5 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: calc(var(--circle-size) * 2);
+    height: calc(var(--circle-size) * 2);
+    top: calc(50% - var(--circle-size));
+    left: calc(50% - var(--circle-size));
+    transform-origin: calc(50% - 800px) calc(50% + 200px);
+    animation: moveInCircle 20s ease infinite;
+    opacity: 1;
+}
+
+.interactive {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: 100%;
+    height: 100%;
+    top: -50%;
+    left: -50%;
+    opacity: 0.7;
+}
+
+/* =========================================
+   HORIZONTAL GLASS CARDS (Projects)
+   ========================================= */
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.horizontal-card {
+    display: flex;
+    flex-direction: column-reverse;
+    /* Image on top mobile */
+
+    /* GLASS EFFECT BACKGROUND */
+    background: rgba(30, 41, 59, 0.4);
+    /* Slate 800 with opacity */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Subtle border */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .horizontal-card {
+        flex-direction: row;
+        /* Side by side desktop */
+        height: 320px;
+        /* Fixed height for consistency */
+    }
+}
+
+.horizontal-card:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+    /* Blue tint hover */
+    background: rgba(30, 41, 59, 0.6);
+    /* Slightly more opaque on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+/* LEFT SIDE: CONTENT */
+.card-content {
+    flex: 1;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #F8FAFC;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.card-description {
+    font-size: 1rem;
+    color: #94A3B8;
+    /* Slate 400 */
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* TAGS */
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.tag {
+    background: rgba(56, 189, 248, 0.1);
+    /* Sky 400 with opacity */
+    color: #38BDF8;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    /* Pill shape */
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    transition: all 0.2s ease;
+}
+
+.horizontal-card:hover .tag {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: rgba(56, 189, 248, 0.4);
+}
+
+/* RIGHT SIDE: IMAGE */
+.card-image-wrapper {
+    flex: 1;
+    background: #1E293B;
+    position: relative;
+    overflow: hidden;
+    /* Diagonal cut or separation line could go here if requested */
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    /* Slightly muted to blend with dark theme until hover */
+    opacity: 0.9;
+}
+
+.horizontal-card:hover .card-image {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* Navbar Glass Effect */
+.navbar-scrolled {
+    background: rgba(15, 23, 42, 0.3) !important;
+    /* Low opacity for glass */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   SKILLS WINDOW CARDS (Redesign)
+   ========================================= */
+
+.skill-window {
+    background: #1E1E1E;
+    /* Dark gray like VS Code */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.skill-window:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    border-color: #444;
+}
+
+.window-header {
+    background: #252526;
+    /* Slightly lighter header */
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    position: relative;
+}
+
+.traffic-lights {
+    display: flex;
+    gap: 8px;
+}
+
+.traffic-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.traffic-dot.red {
+    background-color: #FF5F56;
+}
+
+.traffic-dot.yellow {
+    background-color: #FFBD2E;
+}
+
+.traffic-dot.green {
+    background-color: #27C93F;
+}
+
+.window-title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #CCCCCC;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    pointer-events: none;
+    /* Let clicks pass through */
+}
+
+.window-body {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    /* Vertical center if needed */
+    justify-content: center;
+}
+
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns default */
+    gap: 24px;
+    width: 100%;
+}
+
+/* 3 columns on larger cards if needed, or stick to 2 for cleaner look */
+@media (min-width: 400px) {
+    .skill-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    transition: transform 0.2s ease;
+}
+
+.skill-item:hover {
+    transform: scale(1.05);
+}
+
+.skill-item img {
+    /* Dimensions handled by utility classes w-10 h-10 */
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.skill-name {
+    color: #E0E0E0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+
+
+/* FIX: Allow multi-line hero title */
+.hero-title {
+    overflow: visible !important;
+    white-space: normal !important;
+    height: auto !important;
+}
+
+.line-mask {
+    overflow: hidden;
+    display: block;
+    margin-bottom: 0px;
+}
+
+.line-mask .hide--text {
+    transform: translateY(100%);
+}
+
+/* =========================================
+   CONTACT FORM STYLES
+   ========================================= */
+
+.glass-form-container {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-form-container:hover {
+    border-color: rgba(56, 189, 248, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    background: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
+}
+
+/* Custom button glow effect */
+#contact button[type="submit"] {
+    position: relative;
+    overflow: hidden;
+}
+
+#contact button[type="submit"]::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+#contact button[type="submit"]:hover::after {
+    opacity: 1;
+}
