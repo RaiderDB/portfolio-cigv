@@ -42,6 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
             form_subject: "Asunto",
             form_message: "Mensaje",
             form_submit: "Enviar Mensaje",
+            ph_name: "Tu nombre",
+            ph_email: "ejemplo@correo.com",
+            ph_subject: "¿En qué puedo ayudarte?",
+            ph_message: "Escribe tu mensaje aquí...",
             footer_rights: "Copyright © 2026 Carlos Ignacio Galvez Vilca"
         },
         en: {
@@ -79,6 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
             form_subject: "Subject",
             form_message: "Message",
             form_submit: "Send Message",
+            ph_name: "Your Name",
+            ph_email: "example@email.com",
+            ph_subject: "How can I help you?",
+            ph_message: "Write your message here...",
             footer_rights: "Copyright © 2026 Carlos Ignacio Galvez Vilca"
         }
     };
@@ -98,6 +106,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     el.innerText = translations[lang][key];
                 }
+            }
+        });
+
+        // Update Placeholders
+        const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+        placeholders.forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (translations[lang][key]) {
+                el.placeholder = translations[lang][key];
             }
         });
 
