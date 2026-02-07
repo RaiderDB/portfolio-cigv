@@ -394,8 +394,106 @@ const projectData = {
         `
     },
     "logistics": {
-        title: "Optimización de Inventarios",
-        content: "<p class='text-center py-10 italic'>Información detallada próximamente.</p>"
+        title: "Optimización de Inventarios & Reingeniería de Procesos",
+        content: `
+            <div class="grid lg:grid-cols-12 gap-8">
+                <!-- LEFT COLUMN: INFO (40% width) -->
+                <div class="space-y-8 order-2 lg:order-1 lg:col-span-5">
+                    <!-- Executive Summary -->
+                    <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
+                        <h4 class="text-white font-bold text-lg mb-2 flex items-center gap-2">
+                            <ion-icon name="cube-outline" class="text-primary-400"></ion-icon>
+                            Resumen Ejecutivo
+                        </h4>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Proyecto integral de consultoría y desarrollo tecnológico enfocado en la reducción de mermas y optimización de tiempos en centros de distribución.
+                            Se implementó una reestructuración operativa basada en modelado BPMN y herramientas analíticas de control de stock.
+                        </p>
+                    </div>
+
+                    <!-- Modules -->
+                    <div>
+                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">📦 Áreas de Intervención</h4>
+                        <ul class="space-y-3 text-sm">
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">1. Modelamiento de Procesos (BPMN)</strong>
+                                Levantamiento y rediseño de flujos operativos (AS-IS / TO-BE), identificando cuellos de botella en la recepción y despacho.
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">2. Control de Mermas</strong>
+                                Estrategias de auditoría y sistemas de alerta temprana para desviaciones de inventario físico vs. lógico.
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg border border-primary-500/20">
+                                <strong class="text-primary-300 block mb-1 flex items-center gap-2">
+                                    <ion-icon name="analytics-outline"></ion-icon> 3. Dashboard Operativo
+                                </strong>
+                                Implementación de paneles en Power BI para seguimiento de KPIs: Rotación de stock, Tasa de quiebre y Exactitud de inventario.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Impact -->
+                    <div>
+                        <h4 class="text-green-400 font-bold text-xl mb-4 flex items-center gap-2">
+                            <ion-icon name="trending-up-outline"></ion-icon> Impacto
+                        </h4>
+                        <div class="bg-green-900/10 border border-green-500/20 p-4 rounded-xl">
+                            <p class="italic text-green-100/80 text-sm">
+                                "La reingeniería de procesos permitió una reducción significativa en los tiempos de preparación de pedidos y una mejora sustancial en la trazabilidad de los productos."
+                            </p>
+                        </div>
+                    </div>
+                    
+                     <!-- Competencies -->
+                     <div>
+                        <h4 class="text-slate-400 font-bold text-lg mb-3">Competencias</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">Process Mining</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">BPMN 2.0</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">Data Analytics</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">Logistics</span>
+                        </div>
+                     </div>
+                </div>
+
+                <!-- RIGHT COLUMN: VISUAL & STACK (60% width) -->
+                <div class="space-y-8 order-1 lg:order-2 lg:col-span-7">
+                     <!-- Visual Representation -->
+                    <div class="sticky top-0 z-10">
+                        <div class="rounded-xl overflow-hidden shadow-2xl border border-slate-700 bg-slate-900 relative group w-full h-auto">
+                            <img src="static/img/WhatsApp Image 2026-02-07 at 2.23.31 AM.jpeg" 
+                                 alt="Logistics Dashboard" 
+                                 class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity">
+                        </div>
+                        
+                        <!-- Mini Stack Summary below visual -->
+                         <div class="mt-6">
+                            <h4 class="text-secondary-400 font-bold text-xl mb-4 flex items-center gap-2">
+                                <ion-icon name="code-slash-outline"></ion-icon> Stack Tecnológico
+                            </h4>
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 text-sm bg-slate-800/30 p-4 rounded-xl border border-slate-700/50">
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Modeling</span>
+                                    <span class="text-white font-medium text-xs">Bizagi / Visio</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Visualization</span>
+                                    <span class="text-white font-medium text-xs">Power BI</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Data Processing</span>
+                                    <span class="text-white font-medium text-xs">Excel / SQL</span>
+                                </div>
+                                <div class="p-2 rounded bg-slate-800/50">
+                                    <span class="text-xs text-slate-400 block mb-1">Methodology</span>
+                                    <span class="text-white font-medium text-xs">Lean Logistics</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `
     }
 };
 

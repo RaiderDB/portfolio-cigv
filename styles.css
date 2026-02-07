@@ -469,6 +469,14 @@ body {
     color: #38BDF8;
 }
 
+.hero-media li a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 /* Navbar Animation Item Initial State */
 .navbar-anim-item {
     opacity: 1;
