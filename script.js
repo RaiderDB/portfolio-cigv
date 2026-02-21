@@ -1,6 +1,59 @@
 // Initialize GSAP Animations when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
 
+    // --- EMAILJS INITIALIZATION ---
+    emailjs.init("67jgO6jWvwcf9LU1a");
+
+    // --- CONTACT FORM HANDLER ---
+    const contactForm = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formStatus = document.getElementById('form-status');
+
+    function showStatus(message, isSuccess) {
+        formStatus.textContent = message;
+        formStatus.className = isSuccess
+            ? 'mt-4 px-4 py-3 rounded-lg text-sm font-medium text-center bg-green-500/10 border border-green-500/30 text-green-400'
+            : 'mt-4 px-4 py-3 rounded-lg text-sm font-medium text-center bg-red-500/10 border border-red-500/30 text-red-400';
+    }
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Set loading state
+            submitBtn.disabled = true;
+            const lang = window.currentLang || 'es';
+            submitBtn.textContent = lang === 'es' ? 'Enviando...' : 'Sending...';
+            formStatus.className = 'hidden';
+
+            const templateParams = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                title: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            emailjs.send('service_4jrku8l', 'template_24xb77e', templateParams)
+                .then(function () {
+                    showStatus(
+                        lang === 'es' ? '¡Mensaje enviado exitosamente! Me pondré en contacto pronto.' : 'Message sent successfully! I\'ll get back to you soon.',
+                        true
+                    );
+                    contactForm.reset();
+                }, function (error) {
+                    console.error('EmailJS error:', error);
+                    showStatus(
+                        lang === 'es' ? 'Hubo un error al enviar el mensaje. Por favor intenta nuevamente.' : 'There was an error sending the message. Please try again.',
+                        false
+                    );
+                })
+                .finally(function () {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = lang === 'es' ? 'Enviar Mensaje' : 'Send Message';
+                });
+        });
+    }
+
     // Register GSAP plugins if needed
     // gsap.registerPlugin(ScrollTrigger); 
 
