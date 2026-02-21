@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 message: document.getElementById('message').value
             };
 
-            emailjs.send('service_4jrku8l', 'template_24xb77e', templateParams)
+            emailjs.send('service_z1twmtv', 'template_24xb77e', templateParams)
                 .then(function () {
                     showStatus(
                         lang === 'es' ? '¡Mensaje enviado exitosamente! Me pondré en contacto pronto.' : 'Message sent successfully! I\'ll get back to you soon.',
