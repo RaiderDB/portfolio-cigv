@@ -73,8 +73,17 @@ document.addEventListener("DOMContentLoaded", () => {
             edu_title: "Formación Académica",
             edu_degree_1: "Ingeniería en Informática",
             edu_inst_1: "INACAP, Sede Arica",
-            edu_year_1: "2021 – 2025 (Egresado)",
+            edu_year_1: "2021 – 2025 (Titulado)",
             edu_desc_1: "Enfoque Aplicado: Desarrollo de sistemas para la gestión de datos, análisis de información y optimización de recursos mediante tecnología.",
+            edu_postgrad_title: "Especializaciones & Posgrados",
+            edu_postgrad_inst: "INACAP, Chile · Especialización / Ingeniería y tecnología",
+            edu_postgrad_1: "Arquitectura Cloud",
+            edu_postgrad_2: "Diseño Ágil de Sistemas",
+            edu_postgrad_3: "Diseño y Gestión de Base de Datos",
+            edu_postgrad_4: "Innovación y Emprendimiento",
+            edu_postgrad_5: "Desarrollo de Aplicaciones Básicas",
+            edu_postgrad_6: "Desarrollador Full Stack",
+            edu_postgrad_7: "Soporte Computacional",
             skills_title: "Habilidades Técnicas",
             skills_bi: "BI & DATOS",
             skills_ai: "IA & AUTOMATIZACIÓN",
@@ -121,8 +130,17 @@ document.addEventListener("DOMContentLoaded", () => {
             edu_title: "Education",
             edu_degree_1: "Computer Engineering",
             edu_inst_1: "INACAP, Arica Campus",
-            edu_year_1: "2021 – 2025 (Graduate)",
+            edu_year_1: "2021 – 2025 (Titulado)",
             edu_desc_1: "Applied Approach: Development of systems for data management, information analysis, and resource optimization using technology.",
+            edu_postgrad_title: "Specializations & Postgraduate",
+            edu_postgrad_inst: "INACAP, Chile · Specialization / Engineering and Technology",
+            edu_postgrad_1: "Cloud Architecture",
+            edu_postgrad_2: "Agile Systems Design",
+            edu_postgrad_3: "Database Design and Management",
+            edu_postgrad_4: "Innovation and Entrepreneurship",
+            edu_postgrad_5: "Basic Application Development",
+            edu_postgrad_6: "Full Stack Developer",
+            edu_postgrad_7: "Computer Support",
             skills_title: "Technical Skills",
             skills_bi: "BI & DATA",
             skills_ai: "AI & AUTOMATION",
@@ -364,44 +382,46 @@ const projectData = {
             <div class="grid lg:grid-cols-12 gap-8">
                 <!-- LEFT COLUMN: INFO (40% width) -->
                 <div class="space-y-8 order-2 lg:order-1 lg:col-span-5">
-                    <!-- Executive Summary -->
+                    <!-- Resumen del Rol -->
                     <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
                         <h4 class="text-white font-bold text-lg mb-2 flex items-center gap-2">
-                            <ion-icon name="stats-chart-outline" class="text-primary-400"></ion-icon>
-                            Resumen Ejecutivo
+                            <ion-icon name="person-outline" class="text-primary-400"></ion-icon>
+                            Resumen del Rol
                         </h4>
                         <p class="text-slate-300 text-sm leading-relaxed">
-                            Plataforma web desarrollada en Flask que integra monitoreo en tiempo real de producción, 
-                            análisis de datos, Realidad Aumentada e inteligencia artificial para optimizar procesos manufactureros. 
-                            El sistema conecta equipos IoT, bases de datos SQL Server y proporciona analytics avanzados con NL2SQL.
+                            Lideré el diseño, desarrollo e implementación de <strong class="text-white">ATHENAS</strong>, una plataforma integral para el procesamiento, análisis y monitoreo en tiempo real de grandes volúmenes de datos operativos. Abarca desde el modelado de bases de datos relacionales hasta la implementación de modelos predictivos e IA, optimizando el control de gestión y la toma de decisiones gerenciales.
                         </p>
                     </div>
 
-                    <!-- Modules -->
+                    <!-- Funciones y Logros -->
                     <div>
-                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">🎯 Módulos Principales</h4>
+                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">🎯 Funciones y Logros Clave</h4>
                         <ul class="space-y-3 text-sm">
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">1. Dashboard de Producción</strong>
-                                Monitoreo por turno, indicadores en tiempo real (Producción horaria, scrap) y control de estado automatizado.
+                                <strong class="text-white block mb-1">Arquitectura Backend & ETL</strong>
+                                Procesos ETL con Python, SQL Server y pyodbc. Automatización de extracción, transformación y validación de datos de múltiples fuentes garantizando integridad y normalización.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">2. Módulo de Estadísticas</strong>
-                                Visualización de KPIs con selectores temporales y gráficos interactivos (Chart.js) para producción y scrap.
+                                <strong class="text-white block mb-1">Análisis Predictivo & Tendencias</strong>
+                                Algoritmos de regresión lineal para reportes predictivos a 3 meses. Dashboards dinámicos con KPIs y seguimiento de metas semanales/mensuales.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg border border-primary-500/20">
                                 <strong class="text-primary-300 block mb-1 flex items-center gap-2">
-                                    <ion-icon name="sparkles-outline"></ion-icon> 3. Augmented Analytics (IA)
+                                    <ion-icon name="sparkles-outline"></ion-icon> Analítica Aumentada (NL2SQL + IA)
                                 </strong>
-                                Motor NL2SQL con GPT-4o-mini que convierte preguntas en lenguaje natural a consultas SQL seguras.
+                                Motor NL2SQL con GPT-4o-mini. Protocolos de seguridad con listas negras (regex) para prevenir inyecciones SQL y garantizar acceso controlado.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">4. Módulo IoT</strong>
-                                Integración con sensores LM35 mediante Arduino/ESP32 para telemetría en tiempo real.
+                                <strong class="text-white block mb-1">Captura Multi-fuente (IoT)</strong>
+                                Endpoints y webhooks CSRF-free para ingesta de datos JSON en tiempo real desde dispositivos IoT, unificados con bases de datos secundarias para análisis cruzados.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">5. Realidad Aumentada</strong>
-                                Visualización 3D interactiva de líneas de producción.
+                                <strong class="text-white block mb-1">Seguridad & Auditoría (RBAC)</strong>
+                                Sistema de control de acceso basado en roles y módulo de auditoría con trazabilidad completa: registra alteraciones de datos (valores anteriores vs. nuevos).
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">IoT & Realidad Aumentada</strong>
+                                Integración con sensores LM35 via Arduino/ESP32 para telemetría en tiempo real. Visualización 3D interactiva de líneas de producción.
                             </li>
                         </ul>
                     </div>
@@ -489,43 +509,46 @@ const projectData = {
                 <div class="space-y-8 order-2 lg:order-1 lg:col-span-5">
                     <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
                         <h4 class="text-white font-bold text-lg mb-2 flex items-center gap-2">
-                            <ion-icon name="stats-chart-outline" class="text-primary-400"></ion-icon>
-                            Executive Summary
+                            <ion-icon name="person-outline" class="text-primary-400"></ion-icon>
+                            Role Summary
                         </h4>
                         <p class="text-slate-300 text-sm leading-relaxed">
-                            Web platform developed in Flask integrating real-time production monitoring, 
-                            data analysis, Augmented Reality, and AI to optimize manufacturing processes. 
-                            The system connects IoT devices, SQL Server databases, and provides advanced analytics with NL2SQL.
+                            Led the design, development and implementation of <strong class="text-white">ATHENAS</strong>, a comprehensive platform for real-time processing, analysis and monitoring of large volumes of operational data. Covers everything from relational database modeling to predictive models and AI, optimizing management control and executive decision-making through data intelligence.
                         </p>
                     </div>
 
                     <div>
-                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">🎯 Main Modules</h4>
+                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">🎯 Key Functions & Achievements</h4>
                         <ul class="space-y-3 text-sm">
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">1. Production Dashboard</strong>
-                                Shift monitoring, real-time indicators (Hourly production, scrap), and automated status control.
+                                <strong class="text-white block mb-1">Backend Architecture & ETL</strong>
+                                ETL processes with Python, SQL Server and pyodbc. Automated extraction, transformation and validation of data from multiple sources ensuring integrity and normalization.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">2. Statistics Module</strong>
-                                KPI visualization with time selectors and interactive charts (Chart.js) for production and scrap.
+                                <strong class="text-white block mb-1">Predictive Analysis & Trends</strong>
+                                Linear regression algorithms for 3-month predictive reports. Dynamic dashboards with KPIs and weekly/monthly goal tracking.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg border border-primary-500/20">
                                 <strong class="text-primary-300 block mb-1 flex items-center gap-2">
-                                    <ion-icon name="sparkles-outline"></ion-icon> 3. Augmented Analytics (AI)
+                                    <ion-icon name="sparkles-outline"></ion-icon> Augmented Analytics (NL2SQL + AI)
                                 </strong>
-                                NL2SQL engine with GPT-4o-mini converting natural language questions into safe SQL queries.
+                                NL2SQL engine with GPT-4o-mini. Security protocols with blacklists (regex) to prevent SQL injection and ensure controlled access.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">4. IoT Module</strong>
-                                Integration with LM35 sensors via Arduino/ESP32 for real-time telemetry.
+                                <strong class="text-white block mb-1">Multi-source Data Capture (IoT)</strong>
+                                CSRF-free endpoints and webhooks for real-time JSON data ingestion from IoT devices, unified with secondary databases for cross-analysis.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">5. Augmented Reality</strong>
-                                Interactive 3D visualization of production lines.
+                                <strong class="text-white block mb-1">Security & Audit (RBAC)</strong>
+                                Role-based access control system and full audit module with complete traceability: records data alterations (previous vs. new values).
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">IoT & Augmented Reality</strong>
+                                Integration with LM35 sensors via Arduino/ESP32 for real-time telemetry. Interactive 3D visualization of production lines.
                             </li>
                         </ul>
                     </div>
+
 
                     <div>
                         <h4 class="text-green-400 font-bold text-xl mb-4 flex items-center gap-2">
@@ -606,39 +629,47 @@ const projectData = {
             content: `
             <div class="grid lg:grid-cols-12 gap-8">
                 <div class="space-y-8 order-2 lg:order-1 lg:col-span-5">
+                    <!-- Resumen del Rol -->
                     <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
                         <h4 class="text-white font-bold text-lg mb-2 flex items-center gap-2">
-                            <ion-icon name="map-outline" class="text-primary-400"></ion-icon>
-                            Resumen Ejecutivo
+                            <ion-icon name="person-outline" class="text-primary-400"></ion-icon>
+                            Resumen del Rol
                         </h4>
                         <p class="text-slate-300 text-sm leading-relaxed">
-                            Plataforma web avanzada para la centralización, auditoría y visualización estratégica de operaciones de seguridad. 
-                            Integra flujos de datos de múltiples unidades (UDIEM, Patrullaje, Seguridad Comunitaria) transformando reportes de campo en inteligencia accionable para la toma de decisiones en tiempo real.
+                            Lideré el procesamiento, análisis y visualización de datos de seguridad pública, desarrollando <strong class="text-white">GISP</strong>, una plataforma integral de gestión operacional. Centralicé información de múltiples unidades en terreno (Patrullaje Motorizado, UDIEM, Infantería, Drones e Inspecciones), transformando datos crudos en inteligencia accionable para la prevención de delitos e incivilidades en la comuna.
                         </p>
                     </div>
+
+                    <!-- Funciones y Logros -->
                     <div>
-                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">🗺️ Funcionalidad Clave: Inteligencia Espacial</h4>
+                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">🗺️ Funciones y Logros Clave</h4>
                         <ul class="space-y-3 text-sm">
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">1. Mapas de Calor Combinados</strong>
-                                Visualización de densidad con Leaflet.js, superponiendo capas de datos de distintas unidades para detectar "zonas calientes".
+                                <strong class="text-white block mb-1">Análisis Delictual & Control de Gestión</strong>
+                                Algoritmos para detección de anomalías y ranking de riesgo territorial. Procesamiento de texto y categorización de incidentes (violencia, robos, drogas) para perfilar el comportamiento delictual por sector.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">2. Normalización de Coordenadas</strong>
-                                Algoritmos en Python para limpieza y validación de coordenadas (Lat/Lon) asegurando precisión en el ploteo.
+                                <strong class="text-white block mb-1">Evaluación de Controles Preventivos</strong>
+                                Dashboards interactivos y reportes semanales para evaluar la eficacia de patrullajes. KPIs específicos (cobertura, confiabilidad, tasa de rectificación) que miden el impacto real del personal en la población.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg border border-primary-500/20">
                                 <strong class="text-primary-300 block mb-1 flex items-center gap-2">
-                                    <ion-icon name="options-outline"></ion-icon> 3. Controles Dinámicos
+                                    <ion-icon name="map-outline"></ion-icon> Visualización Geoespacial (Cartas de Situación)
                                 </strong>
-                                Ajuste en tiempo real de radio, intensidad y difuminado para granularizar el análisis (micro vs macro sectores).
+                                Mapas de calor unificados (Heatmaps) que superponen datos georreferenciados de múltiples unidades operativas, funcionando como Carta de Situación automatizada para decisiones tácticas.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">4. Análisis Espacio-Temporal</strong>
-                                Filtros para "rebobinar" o aislar actividad por rangos de tiempo, visualizando desplazamientos delictuales.
+                                <strong class="text-white block mb-1">Arquitectura de Bases de Datos & ETL</strong>
+                                Automatización de extracción y consolidación hacia MySQL. Limpieza de datos, normalización de columnas, parseo de fechas complejas y corrección de coordenadas geográficas mediante scripts eficientes.
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">Innovación en Captura de Datos</strong>
+                                Integración de nuevos métodos para mejorar la captura desde terreno, reduciendo la fragmentación de datos y optimizando tiempos de respuesta con procesamiento paralelo y caché.
                             </li>
                         </ul>
                     </div>
+
+                    <!-- Impact -->
                     <div>
                         <h4 class="text-green-400 font-bold text-xl mb-4 flex items-center gap-2">
                             <ion-icon name="trending-up-outline"></ion-icon> Impacto
@@ -650,6 +681,7 @@ const projectData = {
                         </div>
                     </div>
                 </div>
+
                 <div class="space-y-8 order-1 lg:order-2 lg:col-span-7">
                     <div class="sticky top-0 z-10">
                         <div class="rounded-xl overflow-hidden shadow-2xl border border-slate-700 bg-slate-900 relative group w-full h-64 lg:h-80">
@@ -801,35 +833,38 @@ const projectData = {
             <div class="grid lg:grid-cols-12 gap-8">
                 <!-- LEFT COLUMN: INFO (40% width) -->
                 <div class="space-y-8 order-2 lg:order-1 lg:col-span-5">
-                    <!-- Executive Summary -->
+                    <!-- Resumen del Rol -->
                     <div class="bg-slate-800/50 p-6 rounded-xl border border-slate-700">
                         <h4 class="text-white font-bold text-lg mb-2 flex items-center gap-2">
-                            <ion-icon name="cube-outline" class="text-primary-400"></ion-icon>
-                            Resumen Ejecutivo
+                            <ion-icon name="person-outline" class="text-primary-400"></ion-icon>
+                            Resumen del Rol
                         </h4>
                         <p class="text-slate-300 text-sm leading-relaxed">
-                            Proyecto integral de consultoría y desarrollo tecnológico enfocado en la reducción de mermas y optimización de tiempos en centros de distribución.
-                            Se implementó una reestructuración operativa basada en modelado BPMN y herramientas analíticas de control de stock.
+                            Responsable de la captura, validación y gestión de datos de inventario en tiempo real, operando software especializado para asegurar la trazabilidad del flujo logístico. Encargado de auditar la información del sistema frente a la realidad física, garantizando la integridad de las bases de datos del centro de distribución y el cumplimiento de las normativas de seguridad.
                         </p>
                     </div>
 
-                    <!-- Modules -->
+                    <!-- Funciones y Logros -->
                     <div>
-                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">📦 Áreas de Intervención</h4>
+                        <h4 class="text-primary-400 font-bold text-xl mb-4 border-l-4 border-primary-500 pl-3">📦 Funciones y Logros Clave</h4>
                         <ul class="space-y-3 text-sm">
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">1. Modelamiento de Procesos (BPMN)</strong>
-                                Levantamiento y rediseño de flujos operativos (AS-IS / TO-BE), identificando cuellos de botella en la recepción y despacho.
+                                <strong class="text-white block mb-1">Procesamiento de Datos en Tiempo Real</strong>
+                                Captura y actualización de información logística mediante terminales RF. Operación de WMS para el registro exacto, validación y control de llegada de camiones y recepción de despachos.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg">
-                                <strong class="text-white block mb-1">2. Control de Mermas</strong>
-                                Estrategias de auditoría y sistemas de alerta temprana para desviaciones de inventario físico vs. lógico.
+                                <strong class="text-white block mb-1">Auditoría & Conciliación de Información</strong>
+                                Ejecución de auditorías cíclicas de inventario (procesos de "bineo") para asegurar la consistencia y exactitud de los datos del sistema frente al stock físico.
                             </li>
                             <li class="bg-slate-900/30 p-3 rounded-lg border border-primary-500/20">
                                 <strong class="text-primary-300 block mb-1 flex items-center gap-2">
-                                    <ion-icon name="analytics-outline"></ion-icon> 3. Dashboard Operativo
+                                    <ion-icon name="analytics-outline"></ion-icon> Análisis de Desviaciones
                                 </strong>
-                                Implementación de paneles en Power BI para seguimiento de KPIs: Rotación de stock, Tasa de quiebre y Exactitud de inventario.
+                                Identificación de discrepancias en inventario, levantamiento de inconsistencias y reporte de correcciones para mantener la fiabilidad de la información cuantitativa.
+                            </li>
+                            <li class="bg-slate-900/30 p-3 rounded-lg">
+                                <strong class="text-white block mb-1">Control de Procedimientos & Normativa</strong>
+                                Supervisión y cumplimiento estricto de protocolos operativos y de seguridad en zonas de almacenamiento, minimizando mermas, pérdidas de trazabilidad y asegurando operaciones sin accidentes.
                             </li>
                         </ul>
                     </div>
@@ -846,6 +881,7 @@ const projectData = {
                         </div>
                     </div>
                 </div>
+
 
                 <!-- RIGHT COLUMN: VISUAL & STACK (60% width) -->
                 <div class="space-y-8 order-1 lg:order-2 lg:col-span-7">

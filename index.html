@@ -33,6 +33,15 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Three.js Import Map -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+        }
+    }
+    </script>
 </head>
 
 <body class="bg-slate-900 text-slate-100 antialiased selection:bg-primary-500 selection:text-white">
@@ -152,7 +161,7 @@
     </div>
     <!-- Scripts -->
     <script src="script.js"></script>
-    <script src="prism_effect.js"></script>
+    <script type="module" src="prism_effect.js"></script>
     <!-- About Section -->
     <section id="about" class="py-24 relative bg-slate-850">
         <div class="container mx-auto px-6">
@@ -180,38 +189,207 @@
                 Formación Académica</h2>
 
             <div class="max-w-4xl mx-auto space-y-8">
+
                 <!-- Education Item 1 -->
                 <div
                     class="education-card relative pl-8 border-l-2 border-indigo-500/30 hover:border-indigo-500 transition-colors">
                     <div
                         class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-indigo-500">
                     </div>
-
                     <div
                         class="bg-slate-800/40 p-6 rounded-xl border border-slate-700/50 hover:bg-slate-800/60 transition-all hover:-translate-y-1">
                         <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                             <div>
-                                <div>
-                                    <h3 class="text-xl font-bold text-white mb-1" data-i18n="edu_degree_1">Ingeniería en
-                                        Informática</h3>
-                                    <p class="text-indigo-400 font-medium" data-i18n="edu_inst_1">INACAP, Sede Arica
-                                    </p>
-                                </div>
+                                <p class="text-slate-500 text-xs uppercase tracking-widest font-semibold mb-1">Título
+                                </p>
+                                <h3 class="text-xl font-bold text-white mb-1" data-i18n="edu_degree_1">Ingeniería en
+                                    Informática</h3>
+                                <p class="text-indigo-400 font-medium" data-i18n="edu_inst_1">INACAP, Sede Arica</p>
                                 <span
-                                    class="inline-block mt-2 md:mt-0 px-3 py-1 bg-indigo-500/10 text-indigo-300 text-xs font-bold rounded-full border border-indigo-500/20"
+                                    class="inline-block mt-2 px-3 py-1 bg-indigo-500/10 text-indigo-300 text-xs font-bold rounded-full border border-indigo-500/20"
                                     data-i18n="edu_year_1">
-                                    2021 – 2025 (Egresado)
+                                    2021 – 2025 (Titulado)
                                 </span>
                             </div>
-                            <p class="text-slate-400 text-sm leading-relaxed" data-i18n="edu_desc_1">
+                            <p class="text-slate-400 text-sm leading-relaxed mt-4 md:mt-0" data-i18n="edu_desc_1">
                                 Enfoque Aplicado: Desarrollo de sistemas para la gestión de datos, análisis de
                                 información y optimización de recursos mediante tecnología.
                             </p>
                         </div>
                     </div>
                 </div>
+
+                <!-- Posgrados -->
+                <div class="mt-4">
+                    <h3 class="text-xl font-semibold text-white mb-6 border-l-4 border-violet-500 pl-4"
+                        data-i18n="edu_postgrad_title">
+                        Especializaciones &amp; Posgrados</h3>
+
+                    <div class="space-y-4">
+
+                        <!-- 1 -->
+                        <div
+                            class="education-card relative pl-8 border-l-2 border-violet-500/30 hover:border-violet-500 transition-colors">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-violet-500">
+                            </div>
+                            <div
+                                class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:bg-slate-800/60 transition-all hover:-translate-y-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                                    <div>
+                                        <h4 class="text-base font-bold text-white" data-i18n="edu_postgrad_1">
+                                            Arquitectura Cloud</h4>
+                                        <p class="text-violet-400 text-sm font-medium" data-i18n="edu_postgrad_inst">
+                                            INACAP, Chile · Especialización /
+                                            Ingeniería y tecnología</p>
+                                    </div>
+                                    <span
+                                        class="px-3 py-1 bg-violet-500/10 text-violet-300 text-xs font-bold rounded-full border border-violet-500/20 whitespace-nowrap">2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2 -->
+                        <div
+                            class="education-card relative pl-8 border-l-2 border-violet-500/30 hover:border-violet-500 transition-colors">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-violet-500">
+                            </div>
+                            <div
+                                class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:bg-slate-800/60 transition-all hover:-translate-y-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                                    <div>
+                                        <h4 class="text-base font-bold text-white" data-i18n="edu_postgrad_2">Diseño
+                                            Ágil de Sistemas</h4>
+                                        <p class="text-violet-400 text-sm font-medium" data-i18n="edu_postgrad_inst">
+                                            INACAP, Chile · Especialización /
+                                            Ingeniería y tecnología</p>
+                                    </div>
+                                    <span
+                                        class="px-3 py-1 bg-violet-500/10 text-violet-300 text-xs font-bold rounded-full border border-violet-500/20 whitespace-nowrap">2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3 -->
+                        <div
+                            class="education-card relative pl-8 border-l-2 border-violet-500/30 hover:border-violet-500 transition-colors">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-violet-500">
+                            </div>
+                            <div
+                                class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:bg-slate-800/60 transition-all hover:-translate-y-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                                    <div>
+                                        <h4 class="text-base font-bold text-white" data-i18n="edu_postgrad_3">Diseño y
+                                            Gestión de Base de Datos
+                                        </h4>
+                                        <p class="text-violet-400 text-sm font-medium" data-i18n="edu_postgrad_inst">
+                                            INACAP, Chile · Especialización /
+                                            Ingeniería y tecnología</p>
+                                    </div>
+                                    <span
+                                        class="px-3 py-1 bg-violet-500/10 text-violet-300 text-xs font-bold rounded-full border border-violet-500/20 whitespace-nowrap">2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4 -->
+                        <div
+                            class="education-card relative pl-8 border-l-2 border-violet-500/30 hover:border-violet-500 transition-colors">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-violet-500">
+                            </div>
+                            <div
+                                class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:bg-slate-800/60 transition-all hover:-translate-y-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                                    <div>
+                                        <h4 class="text-base font-bold text-white" data-i18n="edu_postgrad_4">Innovación
+                                            y Emprendimiento</h4>
+                                        <p class="text-violet-400 text-sm font-medium" data-i18n="edu_postgrad_inst">
+                                            INACAP, Chile · Especialización /
+                                            Ingeniería y tecnología</p>
+                                    </div>
+                                    <span
+                                        class="px-3 py-1 bg-violet-500/10 text-violet-300 text-xs font-bold rounded-full border border-violet-500/20 whitespace-nowrap">2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5 -->
+                        <div
+                            class="education-card relative pl-8 border-l-2 border-violet-500/30 hover:border-violet-500 transition-colors">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-violet-500">
+                            </div>
+                            <div
+                                class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:bg-slate-800/60 transition-all hover:-translate-y-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                                    <div>
+                                        <h4 class="text-base font-bold text-white" data-i18n="edu_postgrad_5">Desarrollo
+                                            de Aplicaciones Básicas
+                                        </h4>
+                                        <p class="text-violet-400 text-sm font-medium" data-i18n="edu_postgrad_inst">
+                                            INACAP, Chile · Especialización /
+                                            Ingeniería y tecnología</p>
+                                    </div>
+                                    <span
+                                        class="px-3 py-1 bg-violet-500/10 text-violet-300 text-xs font-bold rounded-full border border-violet-500/20 whitespace-nowrap">2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6 -->
+                        <div
+                            class="education-card relative pl-8 border-l-2 border-violet-500/30 hover:border-violet-500 transition-colors">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-violet-500">
+                            </div>
+                            <div
+                                class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:bg-slate-800/60 transition-all hover:-translate-y-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                                    <div>
+                                        <h4 class="text-base font-bold text-white" data-i18n="edu_postgrad_6">
+                                            Desarrollador Full Stack</h4>
+                                        <p class="text-violet-400 text-sm font-medium" data-i18n="edu_postgrad_inst">
+                                            INACAP, Chile · Especialización /
+                                            Ingeniería y tecnología</p>
+                                    </div>
+                                    <span
+                                        class="px-3 py-1 bg-violet-500/10 text-violet-300 text-xs font-bold rounded-full border border-violet-500/20 whitespace-nowrap">2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 7 -->
+                        <div
+                            class="education-card relative pl-8 border-l-2 border-violet-500/30 hover:border-violet-500 transition-colors">
+                            <div
+                                class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-900 border-2 border-violet-500">
+                            </div>
+                            <div
+                                class="bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 hover:bg-slate-800/60 transition-all hover:-translate-y-1">
+                                <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                                    <div>
+                                        <h4 class="text-base font-bold text-white" data-i18n="edu_postgrad_7">Soporte
+                                            Computacional</h4>
+                                        <p class="text-violet-400 text-sm font-medium" data-i18n="edu_postgrad_inst">
+                                            INACAP, Chile · Especialización /
+                                            Ingeniería y tecnología</p>
+                                    </div>
+                                    <span
+                                        class="px-3 py-1 bg-violet-500/10 text-violet-300 text-xs font-bold rounded-full border border-violet-500/20 whitespace-nowrap">2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
+        </div>
     </section>
+
     <!-- Skills Section -->
     <section id="skills" class="py-24 relative z-10 transition-colors duration-300">
         <div class="container mx-auto px-6">
